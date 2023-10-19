@@ -34,7 +34,11 @@ int		num;
 			free(buffer_o);
 		}
 		else
+		{
+			imprimirCadena ("RESTO:");
+			imprimirCadena (buffer);
 			break;
+		}
 	}
 
 	free(readed);
@@ -57,7 +61,11 @@ char	*ft_get_line(char *buffer)
 	if (!line)
 		return (NULL);
 	if (!ft_strchr(buffer, '\n') || (len == (ft_strlen(buffer) - 1)))
+	{
 			line = buffer;
+			imprimirCadena ("1linea:");
+			imprimirCadena (line);
+	}
 	else
 	{
 		line = ft_memcpy(line, buffer, len);
@@ -110,22 +118,25 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	line = ft_get_line(buffer);
+			imprimirCadena ("linea:");
+			imprimirCadena (line);
 	if (!line)
 	{
 		free(buffer);
 		return (NULL);
 	}
+			imprimirCadena ("\n1linea:");
+			imprimirCadena (line);
 	buffer = ft_rest (buffer);
-	if (!buffer)
-	{
-		free (line);
-		return (NULL);
-	}
+				imprimirCadena ("\n2linea:");
+			imprimirCadena (line);
 	if (line[0] == '\0')
 	{
+
 		free(buffer);
-	//	free (line);
+		//free (line);
 		return (NULL);
 	}
+;
 	return (line);
 }

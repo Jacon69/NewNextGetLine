@@ -32,10 +32,7 @@ int	main(void)
 	fd = open("prueba", O_RDONLY);
   	str = get_next_line(fd);
     if (str)
-    {
-    imprimirCadena (str);
-;
-        }
+        imprimirCadena (str);
 //bucle
     while (str)
     {
@@ -48,5 +45,5 @@ int	main(void)
         }
     }
 	close (fd);
-	leaks();
+	//leaks();
 }

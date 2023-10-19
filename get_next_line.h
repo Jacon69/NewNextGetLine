@@ -32,5 +32,5 @@ void    imprimirCadena(const char *cadena);
 #endif
 
 #ifndef  BUFFER_SIZE
-# define BUFFER_SIZE 8
+# define BUFFER_SIZE 10
 #endif
