@@ -6,7 +6,7 @@
 /*   By: jconde-a <jconde-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:51:38 by jconde-a          #+#    #+#             */
-/*   Updated: 2023/10/19 12:01:04 by jconde-a         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:36:26 by jconde-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void    imprimirCadena(const char *cadena);
 #endif
 
 #ifndef  BUFFER_SIZE
-# define BUFFER_SIZE 10
+# define BUFFER_SIZE 5
 #endif
