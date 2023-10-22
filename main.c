@@ -38,14 +38,10 @@ int	main(void)
 	{
 		free(str);
 		str = get_next_line(fd);
-
-		if (str)
-		{
-			imprimirCadena ("Nueva linea:");
-			imprimirCadena (str);
-		}
+		imprimirCadena ("Nueva linea:");
+		imprimirCadena (str);
 	}
-
+	free(str);
 	close (fd);
-//	leaks();
+	leaks();
 }
