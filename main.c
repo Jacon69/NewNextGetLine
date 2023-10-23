@@ -36,12 +36,15 @@ int	main(void)
 //bucle
 	while (str)
 	{
+	
 		free(str);
 		str = get_next_line(fd);
 		imprimirCadena ("Nueva linea:");
 		imprimirCadena (str);
 	}
+	
 	free(str);
+	str = NULL;
 	close (fd);
 	leaks();
 }

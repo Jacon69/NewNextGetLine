@@ -6,7 +6,7 @@
 /*   By: jconde-a <jconde-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:58:56 by jconde-a          #+#    #+#             */
-/*   Updated: 2023/10/22 10:25:38 by jconde-a         ###   ########.fr       */
+/*   Updated: 2023/10/23 14:39:03 by jconde-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ char	*ft_read(int fd, char *buffer)
 	readed = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!readed)
 		return (NULL);
+	if ((buffer) && ft_strchr(buffer, '\n'))
+		buffer = ft_substr(buffer, 0, ft_strlen(buffer));
 	while ((buffer) && !ft_strchr(buffer, '\n') && (num > 0))
 	{
 		num = read(fd, readed, BUFFER_SIZE);
-		if ((num < 0) || ((num == 0) && (!ft_strlen(buffer))))
+		if ((num < 0) || ((num == 0) && (ft_strlen(buffer) == 0)))
 		{
 			free(readed);
 			return (NULL);
@@ -41,7 +43,7 @@ char	*ft_get_line(char *buffer)
 	char	*line;
 	size_t	len;
 
-	if (!ft_strlen(buffer))
+	if (ft_strlen(buffer) == 0)
 		return (NULL);
 	if (!ft_strchr(buffer, '\n'))
 		len = ft_strlen(buffer);
@@ -77,17 +79,6 @@ char	*ft_rest(char *buffer)
 	free(buffer);
 	return (rest);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
