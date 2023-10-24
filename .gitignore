@@ -1,5 +1,96 @@
-.vscode
-.DS_Store
-*.dSYM/
-*.swp
+# Archivos generados por Visual Studio
+.vscode/
+.vs/
+*.suo
+*.user
+*.sln.docstates
 
+# Directorio de compilación
+x64/
+Debug/
+Release/
+
+# Ejecutables
+*.exe
+*.dll
+*.pdb
+
+# Archivos generados en la compilación
+*.obj
+*.ilk
+*.aps
+*.meta
+*.sbr
+*.pch
+
+# Bibliotecas generadas
+*.lib
+
+# Archivos de usuario
+*.sdf
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Directorios de proyectos
+ipch/
+sql/
+Debug
+Release
+packages/
+packages-debug/
+.vs/
+.vscode/
+
+# Archivos de caché
+*.dbmdl
+*.dbproj.suo
+*.jfm
+*.orig
+
+# Archivos de caché de NuGet
+packages/
+*.nupkg
+# Historial de sesiones de usuario
+UpgradeLog.htm
+
+# Archivos de registros y depuración
+*.log
+*.log.xml
+*.log.web
+*.log.txt
+
+# Archivos temporales
+*~
+\#*\#
+
+# Archivos de respaldo
+*.bak
+*.backup
+*.swp
+*.swo
+
+# Mac y sistemas de archivos de Windows
+.DS_Store
+Thumbs.db
+
+# Carpeta oculta en macOS
+.AppleDouble/
+
+# Carpeta de resumen de servicios en macOS
+.AppleDesktop/
+.AppleDB/
+
+# Carpeta de caché en macOS
+.AppleInstaller/
+
+# Imágenes y metadatos en macOS
+.DS_Store
+._*
+.Spotlight-V100/
+.Trashes/
+Icon
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
