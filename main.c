@@ -19,32 +19,24 @@ void imprimirCadena(const char *cadena) {
 	}
 }
 
-void leaks()
-{
-	system("leaks gnl");
-}
-
 int	main(void)
 {
 	char	*str;
 	int		fd;
 
-	fd = open("otro", O_RDONLY);
+	fd = open("multiple_nlx5.txt", O_RDONLY);
 	str = get_next_line(fd);
 	imprimirCadena ("Nueva linea:");
 	imprimirCadena (str);
-//bucle
+
 	while (str)
 	{
-	
+
 		free(str);
 		str = get_next_line(fd);
 		imprimirCadena ("Nueva linea:");
 		imprimirCadena (str);
 	}
-	
-	free(str);
-	str = NULL;
 	close (fd);
-	leaks();
+
 }

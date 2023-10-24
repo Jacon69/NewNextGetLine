@@ -6,7 +6,7 @@
 /*   By: jconde-a <jconde-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:58:56 by jconde-a          #+#    #+#             */
-/*   Updated: 2023/10/23 14:39:03 by jconde-a         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:18:49 by jconde-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,41 @@
 char	*ft_read(int fd, char *buffer)
 {
 	char	*readed;
-	int		num;
 
-	num = 1;
 	readed = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!readed)
+	{
+		free(buffer);
 		return (NULL);
+	}
 	if ((buffer) && ft_strchr(buffer, '\n'))
-		buffer = ft_substr(buffer, 0, ft_strlen(buffer));
+	{
+		free(readed);
+		return (buffer);
+	}
+	buffer = ft_readed(fd, readed, buffer);
+	return (buffer);
+}
+
+char	*ft_readed(int fd, char *readed, char *buffer)
+{
+	int		num;
+	char	*ptr;
+
+	num = 1;
 	while ((buffer) && !ft_strchr(buffer, '\n') && (num > 0))
 	{
 		num = read(fd, readed, BUFFER_SIZE);
 		if ((num < 0) || ((num == 0) && (ft_strlen(buffer) == 0)))
 		{
 			free(readed);
+			free (buffer);
 			return (NULL);
 		}
 		readed[num] = '\0';
-		buffer = ft_strjoin(buffer, readed);
+		ptr = buffer;
+		buffer = ft_strjoin(ptr, readed);
+		free(ptr);
 	}
 	free(readed);
 	return (buffer);
@@ -80,17 +97,10 @@ char	*ft_rest(char *buffer)
 	return (rest);
 }
 
-
-
-
-
-
-
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	char		*line;
-	char		*buffer_o;
 
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
@@ -101,9 +111,7 @@ char	*get_next_line(int fd)
 			return (NULL);
 		buffer[0] = '\0';
 	}
-	buffer_o = buffer;
 	buffer = ft_read(fd, buffer);
-	free(buffer_o);
 	if (!buffer)
 		return (NULL);
 	line = ft_get_line(buffer);
