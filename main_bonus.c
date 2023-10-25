@@ -22,31 +22,40 @@ void imprimirCadena(const char *cadena) {
 // void leaks()
 // {
 // 	imprimirCadena ("\n+++++++++++++++++++++++\n");
-// 	system("leaks gnl");
+// 	system("leaks -q gnl");
 // 	imprimirCadena ("\n+++++++++++++++++++++++\n");
 // }
 
 int	main(void)
 {
-	char	*str;
-	int		fd;
+	char	*str1;
+	char	*str2;
+	int		fd1;
+	int		fd2;
 
-	fd = open("multiple_nlx5.txt", O_RDONLY);
-	str = get_next_line(fd);
-	imprimirCadena ("Nueva linea:");
-	imprimirCadena (str);
+	atexit(leaks);
+	fd1 = open("text1", O_RDONLY);
+	fd2 = open("text2", O_RDONLY);
+	str1 = get_next_line(fd1);
+	imprimirCadena (str1);
+	str2 = get_next_line(fd2);
+	imprimirCadena (str2);
 //bucle
-	while (str)
+	while (str1 || str2)
 	{
-	
-		free(str);
-		str = get_next_line(fd);
-		imprimirCadena ("Nueva linea:");
-		imprimirCadena (str);
+		if (str1)
+		{
+			free(str1);
+			str1 = get_next_line(fd1);
+			imprimirCadena (str1);
+		}
+		if (str2)
+		{
+			free(str2);
+			str2 = get_next_line(fd2);
+			imprimirCadena (str2);
+		}
 	}
-	
-	//free(str);
-	//str = NULL;
-	close (fd);
-	// leaks();
+	close (fd1);
+	close (fd2);
 }

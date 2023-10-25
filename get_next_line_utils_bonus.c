@@ -1,12 +1,12 @@
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
 	size_t	len;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	str = (char *) malloc(len + 1);
@@ -47,7 +47,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		((unsigned char *) dst)[i] = ((unsigned char *) src)[i];
 		i++;
 	}
-
 	return (dst);
 }
 

@@ -6,11 +6,11 @@
 /*   By: jconde-a <jconde-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 09:58:56 by jconde-a          #+#    #+#             */
-/*   Updated: 2023/10/24 20:22:42 by jconde-a         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:28:22 by jconde-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read(int fd, char *buffer)
 {
@@ -37,7 +37,7 @@ char	*ft_readed(int fd, char *readed, char *buffer)
 	char	*ptr;
 
 	num = 1;
-	while ((buffer) && !ft_strchr(buffer, '\n') && (num > 0))
+	while ((!buffer) || (!ft_strchr(buffer, '\n') && (num > 0)))
 	{
 		num = read(fd, readed, BUFFER_SIZE);
 		if ((num < 0) || ((num == 0) && (ft_strlen(buffer) == 0)))
@@ -99,33 +99,24 @@ char	*ft_rest(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	**buffer;
+	static char	*buffer[256];
 	char		*line;
 
 	if ((fd < 0) || (BUFFER_SIZE <= 0))
 		return (NULL);
-	if (!buffer)
-	{
-		buffer = (char **) malloc(sizeof(char));
-		if (!buffer)
-			return (NULL);
-		buffer[fd] = (char *) malloc(sizeof(char));
-	}
 	if (!buffer[fd])
 	{
-		ft_free_all();
-		return (NULL);
+		buffer[fd] = (char *) malloc(sizeof(char));
+		if (!buffer[fd])
+			return (NULL);
+		buffer[fd][0] = '\0';
 	}
-		buffer[fd] = '\0';
-	buffer = ft_read(fd, buffer);
-	if (!buffer)
+	buffer[fd] = ft_read(fd, buffer[fd]);
+	if (!buffer[fd])
 		return (NULL);
-	line = ft_get_line(buffer);
+		line = ft_get_line(buffer[fd]);
 	if (!line)
-	{
-		free(buffer);
 		return (NULL);
-	}
-	buffer = ft_rest (buffer);
+	buffer[fd] = ft_rest (buffer[fd]);
 	return (line);
 }
