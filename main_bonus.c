@@ -19,12 +19,12 @@ void imprimirCadena(const char *cadena) {
 	}
 }
 
-// void leaks()
-// {
-// 	imprimirCadena ("\n+++++++++++++++++++++++\n");
-// 	system("leaks -q gnl");
-// 	imprimirCadena ("\n+++++++++++++++++++++++\n");
-// }
+ void leaks()
+ {
+ 	imprimirCadena ("\n+++++++++++++++++++++++\n");
+ 	system("leaks -q gnl");
+ 	imprimirCadena ("\n+++++++++++++++++++++++\n");
+ }
 
 int	main(void)
 {
@@ -34,6 +34,7 @@ int	main(void)
 	int		fd2;
 
 	atexit(leaks);
+
 	fd1 = open("text1", O_RDONLY);
 	fd2 = open("text2", O_RDONLY);
 	str1 = get_next_line(fd1);
